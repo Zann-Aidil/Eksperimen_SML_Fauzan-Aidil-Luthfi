@@ -1,0 +1,47 @@
+name: Automated Preprocessing — Titanic
+
+# Trigger: setiap push ke main atau manual dari tab Actions
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'titanic_raw/**'
+      - 'preprocessing/automate_Fauzan-Aidil-Luthfi.py'
+  workflow_dispatch:   # bisa jalan manual
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Clone repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Python
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy scikit-learn
+
+      # 4. Jalankan script preprocessing
+      - name: Run preprocessing
+        run: |
+          python preprocessing/automate_Fauzan-Aidil-Luthfi.py
+
+      # 5. Commit & push hasil preprocessing ke repo
+      - name: Commit preprocessed dataset
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add titanic_preprocessing/
+          git diff --cached --quiet || git commit -m "chore: update preprocessed dataset [auto]"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
