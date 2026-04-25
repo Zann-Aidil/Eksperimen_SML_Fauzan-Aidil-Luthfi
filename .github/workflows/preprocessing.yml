@@ -1,5 +1,5 @@
 name: Automated Preprocessing — Titanic
-
+ 
 # Trigger: setiap push ke main atau manual dari tab Actions
 on:
   push:
@@ -9,38 +9,38 @@ on:
       - 'titanic_raw/**'
       - 'preprocessing/automate_Fauzan-Aidil-Luthfi.py'
   workflow_dispatch:   # bisa jalan manual
-
+ 
 jobs:
   preprocessing:
     runs-on: ubuntu-latest
-
+ 
     # Kasih izin write ke repo — ini yang fix error 403
     permissions:
       contents: write
-
+ 
     steps:
       # 1. Clone repo (pakai token biar bisa push)
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
+ 
       # 2. Setup Python
       - name: Setup Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
+ 
       # 3. Install dependencies
       - name: Install dependencies
         run: |
           pip install pandas numpy scikit-learn
-
+ 
       # 4. Jalankan script preprocessing
       - name: Run preprocessing
         run: |
           python preprocessing/automate_Fauzan-Aidil-Luthfi.py
-
+ 
       # 5. Commit & push hasil preprocessing ke repo
       - name: Commit preprocessed dataset
         run: |
