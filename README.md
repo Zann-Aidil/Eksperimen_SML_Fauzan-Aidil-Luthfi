@@ -4,35 +4,12 @@
 **NIM:** apc352d6y0439  
 **Dataset:** Titanic - ML from Disaster (Kaggle)
 
-## Struktur Folder
-
-```
-Eksperimen_SML_Fauzan-Aidil-Luthfi/
-├── .github/
-│   └── workflows/
-│       └── preprocessing.yml       ← GitHub Actions (Advanced)
-├── titanic_raw/
-│   └── train.csv                   ← Dataset mentah dari Kaggle
-├── preprocessing/
-│   ├── Eksperimen_Fauzan-Aidil-Luthfi.ipynb   ← Notebook eksperimen
-│   ├── automate_Fauzan-Aidil-Luthfi.py        ← Script otomasi (Skilled)
-│   └── titanic_preprocessing/
-│       └── train_preprocessed.csv             ← Hasil preprocessing
-└── README.md
-```
-
 ## Cara Download Dataset
 
 1. Buka https://www.kaggle.com/competitions/tfugp-titanic-ml-from-disaster/data
 2. Download `train.csv`
 3. Taruh di folder `titanic_raw/train.csv`
 
-## Cara Jalankan Preprocessing Manual
-
-```bash
-pip install pandas numpy scikit-learn
-python preprocessing/automate_Fauzan-Aidil-Luthfi.py
-```
 
 ## Tahapan Preprocessing
 
